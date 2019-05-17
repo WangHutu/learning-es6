@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>assign浅克隆</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		// assign用法： Object.assign("目标对象","源对象")
+		// Object.assign只拷贝自身属性，不可枚举的属性（enumerable为false）和继承的属性不会被拷贝
+
+		var source = {
+			age:18,
+			height:170,
+			className:"3年2班"
+		}
+
+		var newObj2 = {
+			a:90
+		}
+
+		var newObj1 = Object.assign(newObj2,source);
+
+		console.log(newObj2);   // {a: 90, age: 18, height: 170, className: "3年2班"}
+
+
+	</script>
+</body>
+</html>

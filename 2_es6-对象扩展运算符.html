@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象扩展运算符</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+		// 对象扩展运算符也只能拷贝自身属性，不能拷贝原型上的，和继承的属性
+			
+		var car = {
+			brand:"bmw",
+			price:"368000",
+			length:3
+		};
+
+		// 克隆一个跟car完全一样的对象出来
+		var car2 = {...car};
+		console.log(car2);
+
+		// 克隆一个，length属性不一样的car
+		var car3 = {...car,length:4};
+		console.log(car3);
+
+		// 给克隆的对象添加一个属性
+		var car4 = {...car,type:"SUV"};
+		console.log(car4);
+
+		// 在以car4为源对象克隆一个新对象
+		var car5 = {...car4,price:"69800",brand:"BYD"};
+		console.log(car5);
+
+
+
+
+		var arr1 = [1,2,3,6,8];
+		var arr2 = [...arr1];
+		console.log(arr2);
+	</script>
+	
+</body>
+</html>
