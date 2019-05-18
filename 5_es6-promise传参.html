@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+    // promise中的resolve执行的时候可以传入参数；一般用于获取数据的时候，把获取到的数据传出，进行处理
+    function getUser() {
+        return new Promise(resolve => {
+            $.get('/getUser',res => {
+                // res 是获取到的数据
+                // 把数据传到下一步操作中
+
+                resolve(res);
+            })
+        })
+    }
+
+    getUser().then(data => {
+        // data表示获取的到的数据，这里可以对数据进行操作
+    })
+</script>
+</html>

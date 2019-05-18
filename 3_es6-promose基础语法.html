@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>es6-promose</title>
+</head>
+<body>
+
+</body>
+<script>
+	// promise避免地狱回调
+
+	// Promise的构造函数接收一个参数，是函数，并且传入两个参数：resolve，reject，
+	// 分别表示异步操作执行成功后的回调函数和异步操作执行失败后的回调函数。
+	// 其实这里用“成功”和“失败”来描述并不准确；
+	// 按照标准来讲，resolve是将Promise的状态置为fullfiled；
+	// reject是将Promise的状态置为rejected。不过在我们开始阶段可以先这么理解，后面再细究概念
+	function fn() {
+		return new Promise((resolve,reject)=>{
+			setTimeout(()=>{
+				console.log('你好');
+				// 其实这里的异步逻辑已经执行完毕了
+				// 通过调用resolve()函数，来让外界得知，异步已经操作完成
+				resolve();
+			},1000);
+		})
+	}
+
+	fn().then(res=>{
+		// fn调用完之后，通过fn内部的resolve得知异步逻辑完成，之后就可以执行下面这行代码了
+		console.log('第二步');
+
+		// 再次调用fn，通过fn内部的resolve得知异步逻辑完成，之后可以执行下面这行代码了
+		fn().then(res=>{
+			console.log('第三步')
+		})
+	})
+
+	// 输出顺序
+	// 你好
+	// 第二步
+	// 你好
+	// 第三步
+
+
+</script>
+</html>
